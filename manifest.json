@@ -6,5 +6,5 @@
   "homePage" : "https:\/\/github.com\/ysnows\/enconvo-translator",
   "extensionId" : "enconvo.translator",
   "version" : "0.0.1",
-  "appCast" : ""
+  "appCast" : "https://raw.githubusercontent.com/ysnows/enconvo-translator/main/appcast.json"
 }
