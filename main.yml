@@ -1,5 +1,5 @@
 name: Translator
-version: 0.0.2
+version: 0.0.3
 author: enconvo
 on: {}
 steps:
@@ -18,7 +18,7 @@ steps:
       messages:
       - role: system
         content: 'act as an expert translator for zh-en translation, just return the
-          translated result, don''t explanation, the text to be translated is  : {{text|contextText}}'
+          translated result, don''t explanation, the text to be translated is  : {{text|contextText|copiedText}}'
     Output:
       type: bool
       value: 'true'
