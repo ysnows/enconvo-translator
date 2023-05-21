@@ -1,0 +1,40 @@
+name: Translator
+version: 0.0.1
+author: enconvo
+on: {}
+steps:
+- name: ''
+  uses: prompt
+  env:
+    Model:
+      type: enum
+      value: gpt-3.5-turbo
+      sort: 0
+      messages: []
+    Messages:
+      type: messages
+      value: ''
+      sort: 2
+      messages:
+      - role: system
+        content: 'act as an expert translator for zh-en translation, just return the
+          translated result, don''t explanation, the text to be translated is  : {{text|contextText}}'
+    Output:
+      type: bool
+      value: 'true'
+      sort: 3
+      messages: []
+    Temperature:
+      type: enum
+      value: '0.0'
+      sort: 1
+      messages: []
+extensionId: enconvo.translator
+logo: ns:translate
+description: Translate text between english and chinese
+async: false
+shortName: ''
+homePage: https://github.com/ysnows/enconvo-translator
+appCast: ''
+shortCut: ''
+minAppVersion: ''
