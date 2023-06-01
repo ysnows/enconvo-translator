@@ -1,11 +1,6 @@
 {
   "identifier": "enconvo.translator",
   "versions": [
-    {
-      "version": "0.0.2",
-      "desc": "feat: 1. v0.0.2",
-      "url": "https://github.com/ysnows/enconvo-translator/releases/download/v0.0.2/enconvo-translator.enconvoplugin",
-      "minAppVersion": "1.1.8"
-    }
+
   ]
 }

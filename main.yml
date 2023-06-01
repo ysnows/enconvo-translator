@@ -1,5 +1,5 @@
 name: Translator
-version: 0.0.3
+version: 0.0.5
 author: enconvo
 on: {}
 steps:
@@ -18,12 +18,7 @@ steps:
       messages:
       - role: system
         content: 'act as an expert translator for zh-en translation, just return the
-          translated result, don''t explanation, the text to be translated is  : {{text|contextText|copiedText}}'
-    Output:
-      type: bool
-      value: 'true'
-      sort: 3
-      messages: []
+          translated result, don''t explanation, the text to be translated is  : {{text|contextText|copiedText}} '
     Temperature:
       type: enum
       value: '0.0'
@@ -33,8 +28,31 @@ extensionId: enconvo.translator
 logo: ns:translate
 description: Translate text between english and chinese
 async: false
-shortName: ''
 homePage: https://github.com/ysnows/enconvo-translator
-appCast: ''
-shortCut: ''
-minAppVersion: ''
+appCast: https://raw.githubusercontent.com/ysnows/enconvo-translator/main/appcast.json
+minAppVersion: 1.2.1
+flowType: prompt
+options:
+- title: General
+  items:
+  - identifier: Alias
+    type: text
+    title: Alias
+    defaultValue: ''
+    menuValues: []
+    desc: ''
+    placeholderText: Add alias
+    textWidth: 1.6e+2
+    disable: false
+  - identifier: Hotkey
+    type: hotkey
+    title: Hotkey
+    defaultValue: ''
+    menuValues: []
+    desc: "This shortcut will open an ai conversation window from anywhere in the
+      system\n      . Make sure it is not conflicting with other global shortcuts."
+    placeholderText: Add a hotkey to global start
+    textWidth: 1.6e+2
+    disable: false
+  desc: ''
+sort: 10
