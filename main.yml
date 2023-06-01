@@ -1,5 +1,5 @@
 name: Translator
-version: 0.0.6
+version: 0.0.7
 author: enconvo
 on: {}
 steps:
@@ -55,4 +55,4 @@ options:
     textWidth: 1.6e+2
     disable: false
   desc: ''
-sort: 10
+sort: 6
