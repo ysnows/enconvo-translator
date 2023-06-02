@@ -1,29 +1,29 @@
 name: Translator
 version: 0.0.7
 author: enconvo
-on: {}
+on: { }
 steps:
-- name: ''
-  uses: prompt
-  env:
-    Model:
-      type: enum
-      value: gpt-3.5-turbo
-      sort: 0
-      messages: []
-    Messages:
-      type: messages
-      value: ''
-      sort: 2
-      messages:
-      - role: system
-        content: 'act as an expert translator for zh-en translation, just return the
+  - name: ''
+    uses: prompt
+    env:
+      Model:
+        type: enum
+        value: gpt-3.5-turbo
+        sort: 0
+        messages: [ ]
+      Messages:
+        type: messages
+        value: ''
+        sort: 2
+        messages:
+          - role: system
+            content: 'act as an expert translator for zh-en translation, just return the
           translated result, don''t explanation, the text to be translated is  : {{text|contextText|copiedText}} '
-    Temperature:
-      type: enum
-      value: '0.0'
-      sort: 1
-      messages: []
+      Temperature:
+        type: enum
+        value: '0.0'
+        sort: 1
+        messages: [ ]
 extensionId: enconvo.translator
 logo: ns:translate
 description: Translate text between english and chinese
@@ -33,26 +33,47 @@ appCast: https://raw.githubusercontent.com/ysnows/enconvo-translator/main/appcas
 minAppVersion: 1.2.1
 flowType: prompt
 options:
-- title: General
-  items:
-  - identifier: Alias
-    type: text
-    title: Alias
-    defaultValue: ''
-    menuValues: []
-    desc: ''
-    placeholderText: Add alias
-    textWidth: 1.6e+2
-    disable: false
-  - identifier: Hotkey
-    type: hotkey
-    title: Hotkey
-    defaultValue: ''
-    menuValues: []
-    desc: "This shortcut will open an ai conversation window from anywhere in the
+  - title: Model Settings
+    items:
+      - identifier: temperature
+        type: menu
+        title: Temperature
+        defaultValue: '1.0'
+        menuValues:
+          - title: 'none'
+            value: '0.0'
+          - title: 'low'
+            value: '0.5'
+          - title: 'medium'
+            value: '1.0'
+          - title: 'high'
+            value: '1.5'
+          - title: 'maximum'
+            value: '2.0'
+      - identifier: model
+        type: llmModel
+        title: LLM Model
+        defaultValue: 'llm.default|--|default'
+  - title: General
+    items:
+      - identifier: Alias
+        type: text
+        title: Alias
+        defaultValue: ''
+        menuValues: [ ]
+        desc: ''
+        placeholderText: Add alias
+        textWidth: 1.6e+2
+        disable: false
+      - identifier: Hotkey
+        type: hotkey
+        title: Hotkey
+        defaultValue: ''
+        menuValues: [ ]
+        desc: "This shortcut will open an ai conversation window from anywhere in the
       system\n      . Make sure it is not conflicting with other global shortcuts."
-    placeholderText: Add a hotkey to global start
-    textWidth: 1.6e+2
-    disable: false
-  desc: ''
+        placeholderText: Add a hotkey to global start
+        textWidth: 1.6e+2
+        disable: false
+    desc: ''
 sort: 6
