@@ -21,8 +21,8 @@ const {ChatOpenAI} = require("./lib/openai");
     const model = new ChatOpenAI({
         temperature: 0,
         streaming: false,
-        // modelName: "claude-2",
-        verbose: true,
+        modelName: "gpt-3.5-turbo-16k",
+        openAIApiKey: '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',
     });
 
     // const model = new EnChatAnthropic({
@@ -33,7 +33,7 @@ const {ChatOpenAI} = require("./lib/openai");
     // });
     //
     const prompt = ChatPromptTemplate.fromPromptMessages([
-        HumanMessagePromptTemplate.fromTemplate("Hello, how are you?{input}"),
+        HumanMessagePromptTemplate.fromTemplate("{input}"),
     ])
 
     const tools = [
@@ -61,7 +61,7 @@ const {ChatOpenAI} = require("./lib/openai");
 
 
 
-    const messages = await prompt.formatMessages({input: "haha."})
+    const messages = await prompt.formatMessages({input: global.text ?? "hello"})
     // console.log(`${JSON.stringify(messages)}`)
     const resp = await model.call(messages)
     console.log(`${resp.content}`)

@@ -505,29 +505,20 @@ class ChatOpenAI extends BaseChatModel {
                 ...axiosOptions.params,
             };
         }
+        console.log("axiosOptions", axiosOptions);
+        console.log("request", request);
         makeCompletionRequest = async () => {
             // const resp = await fetch('https://jsonplaceholder.typicode.com/todos/1')
             const url = "https://enconvo.openai.azure.com/openai/deployments/gpt-35-turbo/chat/completions?api-version=2023-07-01-preview";
 
-            const data = {
-                messages: [
-                    {
-                        content: "AI Assistant",
-                        role: "system",
-                    },
-                    {
-                        role: "user",
-                        content: "Hello, how are you?",
-                    }],
-                temperature: 0
-            }
 
             const resp = await fetch(url, {
                 method: "POST", // *GET, POST, PUT, DELETE, etc.
                 headers: {
                     "Content-Type": "application/json",
+                    "Api-Key": "ef256661ffdd4bb6b29144e1559aa91b"
                 },
-                body: JSON.stringify(data), // body data type must match "Content-Type" header
+                body: JSON.stringify(request), // body data type must match "Content-Type" header
             });
 
 
@@ -538,7 +529,7 @@ class ChatOpenAI extends BaseChatModel {
         };
 
         return this.caller
-            .callWithOptions(request, makeCompletionRequest)
+            .callWithOptions(options, makeCompletionRequest)
     }
 
     _llmType() {
