@@ -275,6 +275,7 @@ class ChatAnthropic extends BaseChatModel {
         makeCompletionRequest = async () => {
             // const resp = await fetch('https://jsonplaceholder.typicode.com/todos/1')
             let url = `https://api.anthropic.com/v1/complete`;
+            console.log(`url: ${url}`)
             // let url = `${this.endpoint}/chat/completions`;
             // 把 axiosOptions.params 里的参数拼接到 url 后面
             const resp = await fetch(url, {
