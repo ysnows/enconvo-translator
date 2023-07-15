@@ -2,14 +2,12 @@ var foo = require('./foo.js');
 var bar = require('./lib/bar.js');
 var gamma = require('gamma');
 var cheerio = require('cheerio');
-var crypto = require('crypto');
 var z = require('zod');
 const {zodToJsonSchema} = require("zod-to-json-schema");
 const {ChatPromptTemplate, HumanMessagePromptTemplate} = require("langchain/prompts");
-const {HumanMessage} = require("langchain/schema");
 const {DynamicStructuredTool} = require("langchain/tools");
 const {EnChatAnthropic} = require("./lib/anthropic");
-// const {ChatOpenAI} = require("./lib/openai");
+const {ChatOpenAI} = require("./lib/openai");
 
 (async () => {
     global.window = {};
@@ -24,7 +22,6 @@ const {EnChatAnthropic} = require("./lib/anthropic");
         temperature: 0,
         streaming: false,
         // modelName: "claude-2",
-        openAIApiKey: '',
         verbose: true,
     });
 
@@ -62,29 +59,31 @@ const {EnChatAnthropic} = require("./lib/anthropic");
         }),
     ]
 
+
+
     const messages = await prompt.formatMessages({input: "haha."})
     // console.log(`${JSON.stringify(messages)}`)
     const resp = await model.call(messages)
-    // console.log(`${resp.content}`)
+    console.log(`${resp.content}`)
 
-    const obj = z.object({
-        content: z.string().describe("content of the transaction"),
-        time: z.string().describe("time when the transaction happened, format: 2023-02-12 10:10:12"),
-        amount: z.number().describe("amount of the transaction"),
-    });
-
-    const json = zodToJsonSchema(obj)
-    console.log(`${JSON.stringify(json)}\n`);
+    // const obj = z.object({
+    //     content: z.string().describe("content of the transaction"),
+    //     time: z.string().describe("time when the transaction happened, format: 2023-02-12 10:10:12"),
+    //     amount: z.number().describe("amount of the transaction"),
+    // });
+    //
+    // const json = zodToJsonSchema(obj)
+    // console.log(`${JSON.stringify(json)}\n`);
 
 
     // const resp = await fetch('https://jsonplaceholder.typicode.com/todos/1')
     // const jj = await resp.json()
     // console.log(`${JSON.stringify(jj)}`);
 
-    const $ = cheerio.load('<h2 class="title">Hello world</h2>');
-    $('h2.title').text('Hello there!');
-    $('h2').addClass('welcome');
-    console.log(`${$.html()}`)
+    // const $ = cheerio.load('<h2 class="title">Hello world</h2>');
+    // $('h2.title').text('Hello there!');
+    // $('h2').addClass('welcome');
+    // console.log(`${$.html()}`)
 
     completion(`${resp.content}`);
 
