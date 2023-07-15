@@ -6,7 +6,7 @@ var z = require('zod');
 const {zodToJsonSchema} = require("zod-to-json-schema");
 const {ChatPromptTemplate, HumanMessagePromptTemplate} = require("langchain/prompts");
 const {DynamicStructuredTool} = require("langchain/tools");
-const {EnChatAnthropic} = require("./lib/anthropic");
+const { ChatAnthropic} = require("./lib/anthropic");
 const {ChatOpenAI} = require("./lib/openai");
 
 (async () => {
@@ -18,20 +18,31 @@ const {ChatOpenAI} = require("./lib/openai");
     console.log(`${res}`);
     // streamHandler(`${res}`);
 
-    const model = new ChatOpenAI({
+    // const model = new ChatOpenAI({
+    //     temperature: 0,
+    //     streaming: false,
+    //     modelName: "gpt-3.5-turbo-16k",
+    //     openAIApiKey: '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',
+    // }, {
+    //     basePath: "https://ai.openreader.xyz/v1/",
+    // });
+
+    // const model = new ChatOpenAI({
+    //     temperature: 0,
+    //     streaming: false,
+    //     azureOpenAIApiKey: "ef256661ffdd4bb6b29144e1559aa91b", // In Node.js defaults to process.env.AZURE_OPENAI_API_KEY
+    //     azureOpenAIApiInstanceName: "enconvo", // In Node.js defaults to process.env.AZURE_OPENAI_API_INSTANCE_NAME
+    //     azureOpenAIApiDeploymentName: "gpt-35-turbo", // In Node.js defaults to process.env.AZURE_OPENAI_API_DEPLOYMENT_NAME
+    //     azureOpenAIApiVersion: "2023-07-01-preview", // In Node.js defaults to process.env.AZURE_OPENAI_API_VERSION
+    // });
+
+    const model = new ChatAnthropic({
         temperature: 0,
-        streaming: false,
-        modelName: "gpt-3.5-turbo-16k",
-        openAIApiKey: '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',
+        modelName: "claude-2",
+        anthropicApiKey: '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',
+        verbose: true,
     });
 
-    // const model = new EnChatAnthropic({
-    //     temperature: 0,
-    //     modelName: "claude-2",
-    //     anthropicApiKey: '',
-    //     verbose: true,
-    // });
-    //
     const prompt = ChatPromptTemplate.fromPromptMessages([
         HumanMessagePromptTemplate.fromTemplate("{input}"),
     ])
@@ -58,7 +69,6 @@ const {ChatOpenAI} = require("./lib/openai");
             func: async ({}) => "add todo success",
         }),
     ]
-
 
 
     const messages = await prompt.formatMessages({input: global.text ?? "hello"})

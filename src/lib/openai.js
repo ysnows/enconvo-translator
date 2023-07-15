@@ -2,6 +2,7 @@ const {AIMessage, ChatMessage, HumanMessage, SystemMessage} = require("langchain
 const {BaseChatModel} = require("langchain/chat_models/base");
 const getEndpoint = require("./tools/azure");
 const {getEnvironmentVariable} = require("./env");
+const {Configuration, OpenAIApi} = require("openai");
 // const {formatToOpenAIFunction} = require("./tools/convert_to_openai");
 // const {getModelNameForTiktoken} = require("./tools/count_tokens");
 // const {promptLayerTrackRequest} = require("./tools/prompt-layer");
@@ -481,6 +482,7 @@ class ChatOpenAI extends BaseChatModel {
         let makeCompletionRequest;
         let asyncCallerOptions = {};
 
+        let openAIClientConfig = {}
         if (!this.client) {
             const openAIEndpointConfig = {
                 azureOpenAIApiDeploymentName: this.azureOpenAIApiDeploymentName,
@@ -489,7 +491,19 @@ class ChatOpenAI extends BaseChatModel {
                 azureOpenAIBasePath: this.azureOpenAIBasePath,
                 basePath: this.clientConfig.basePath,
             };
-            const endpoint = getEndpoint(openAIEndpointConfig);
+
+            this.endpoint = getEndpoint(openAIEndpointConfig);
+
+
+            openAIClientConfig = new Configuration({
+                ...this.clientConfig,
+                basePath: this.endpoint,
+                baseOptions: {
+                    timeout: this.timeout,
+                    ...this.clientConfig.baseOptions,
+                },
+            });
+
         }
         const axiosOptions = {
             ...this.clientConfig.baseOptions,
@@ -504,19 +518,30 @@ class ChatOpenAI extends BaseChatModel {
                 "api-version": this.azureOpenAIApiVersion,
                 ...axiosOptions.params,
             };
+        } else {
+            axiosOptions.headers = {
+                ...openAIClientConfig.baseOptions.headers,
+                ...axiosOptions.headers,
+            };
+
         }
         console.log("axiosOptions", axiosOptions);
         console.log("request", request);
+        console.log("this.endpoint", this.endpoint);
         makeCompletionRequest = async () => {
             // const resp = await fetch('https://jsonplaceholder.typicode.com/todos/1')
-            const url = "https://enconvo.openai.azure.com/openai/deployments/gpt-35-turbo/chat/completions?api-version=2023-07-01-preview";
-
+            let url = `${this.endpoint}/chat/completions`;
+            // 把 axiosOptions.params 里的参数拼接到 url 后面
+            const params = new URLSearchParams(axiosOptions.params).toString();
+            if (params) {
+                url += `?${params}`;
+            }
 
             const resp = await fetch(url, {
                 method: "POST", // *GET, POST, PUT, DELETE, etc.
                 headers: {
                     "Content-Type": "application/json",
-                    "Api-Key": "ef256661ffdd4bb6b29144e1559aa91b"
+                    ...axiosOptions.headers
                 },
                 body: JSON.stringify(request), // body data type must match "Content-Type" header
             });

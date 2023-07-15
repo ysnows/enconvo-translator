@@ -32,7 +32,7 @@ const DEFAULT_STOP_SEQUENCES = [HUMAN_PROMPT];
  * even if not explicitly available on this class.
  *
  */
-class EnChatAnthropic extends BaseChatModel {
+class ChatAnthropic extends BaseChatModel {
     get lc_secrets() {
         return {
             anthropicApiKey: "ANTHROPIC_API_KEY",
@@ -256,21 +256,40 @@ class EnChatAnthropic extends BaseChatModel {
         //     };
         // }
         // else {
-        if (!this.batchClient) {
-            const options = this.apiUrl ? {apiUrl: this.apiUrl} : undefined;
-        }
-        asyncCallerOptions = {signal: options.signal};
-        makeCompletionRequest = async () => {
-            const resp = await fetch('https://jsonplaceholder.typicode.com/todos/1')
-            const jj = await resp.json()
 
-            return {
-                "completion": `${JSON.stringify(jj)}`,
-                "stop_reason": "stop_sequence",
-                "model": "claude-2.0",
-                "stop": "\n\nHuman:",
-                "log_id": "059c40dcd83bfed74c1e558d09bd1bef155ebf615bea579c8f789cc1745d4165"
+        const axiosOptions = {
+            ...options,
+            headers: {
+                "X-Api-Key": this.anthropicApiKey
             }
+        };
+
+        // if (!this.batchClient) {
+        //     const options = this.apiUrl ? { apiUrl: this.apiUrl } : undefined;
+        // }
+
+        asyncCallerOptions = {signal: options.signal};
+
+        console.log(`request: ${JSON.stringify(request)}`)
+
+        makeCompletionRequest = async () => {
+            // const resp = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+            let url = `https://api.anthropic.com/v1/complete`;
+            // let url = `${this.endpoint}/chat/completions`;
+            // 把 axiosOptions.params 里的参数拼接到 url 后面
+            const resp = await fetch(url, {
+                method: "POST", // *GET, POST, PUT, DELETE, etc.
+                headers: {
+                    "Content-Type": "application/json",
+                    ...axiosOptions.headers
+                },
+                body: JSON.stringify(request), // body data type must match "Content-Type" header
+            });
+
+            const json = await resp.json()
+            console.log(`${JSON.stringify(json)}`)
+
+            return json;
         };
         // }
         return this.caller.callWithOptions(asyncCallerOptions, makeCompletionRequest);
@@ -287,4 +306,4 @@ class EnChatAnthropic extends BaseChatModel {
 }
 
 
-module.exports = {EnChatAnthropic};
+module.exports = {ChatAnthropic};
