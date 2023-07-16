@@ -1,5 +1,5 @@
 function getEnvironmentVariable(name) {
-    return ""
+    return process.env[name] || '';
 }
 
 module.exports = {
