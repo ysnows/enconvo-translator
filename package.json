@@ -11,7 +11,7 @@
     "lint:fix": "npm run lint --fix",
     "format": "prettier --write \"**/*.ts\"",
     "format:check": "prettier --list-different \"**/*.ts\"",
-    "build": "node build.js",
+    "build": "node build.js && node polyfill.js",
     "deploy": "npm run build &&  cp -r dist/* ~/Library/Application\\ Support/Enconvo/extension/enconvo.translator",
     "publish": "webpack && mv dist enconvo.translator && zip -r enconvo.translator.zip enconvo.translator && rm -rf enconvo.translator",
     "test": "echo \"Error: no test specified\" && exit 1"
