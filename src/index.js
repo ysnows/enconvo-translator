@@ -65,6 +65,9 @@ const {SystemMessagePromptTemplate, ChatPromptTemplate} = require("langchain/pro
 
 
     await chat.call(messages, {}, CallbackManager.fromHandlers({
+        handleChatModelStart(llm, messages, runId, parentRunId, extraParams, tags, metadata) {
+            res.write(`${translateText}\n\n`);
+        },
         handleLLMNewToken(token, idx, runId, parentRunId, tags) {
             res.write(token);
         }
