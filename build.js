@@ -14,10 +14,9 @@ browserify(['./src/index.js'])
     })
     .exclude('axios')
     .exclude('openai')
-    .exclude('@anthropic-ai/sdk')
     // .plugin(tinyify, {
     //     env: {
-    //         appid: 'enconvo.md5'
+    //         appid: 'enconvo.translator'
     //     }
     // })
     .bundle()

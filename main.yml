@@ -5,7 +5,7 @@ on: { }
 steps:
   - name: ''
     uses: javascript
-    stream: false
+    stream: true
     env:
       JSFilePath:
         type: file-path
