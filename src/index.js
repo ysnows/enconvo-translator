@@ -12,6 +12,8 @@ const {SystemMessagePromptTemplate, ChatPromptTemplate} = require("langchain/pro
     let translateText = text || (context.type === 'none' ? "" : context.value) || await clipboard.copy();
     console.log("begin fetch...")
 
+    res.write(`${translateText}\n\n`);
+
     const sourceLang = await language.detect(translateText)
 
     let targetLang = "zh"
@@ -62,12 +64,7 @@ const {SystemMessagePromptTemplate, ChatPromptTemplate} = require("langchain/pro
 
         messages = await template.formatMessages({text: translateText, targetLang: targetLang})
     }
-
-
     await chat.call(messages, {}, CallbackManager.fromHandlers({
-        handleChatModelStart(llm, messages, runId, parentRunId, extraParams, tags, metadata) {
-            res.write(`${translateText}\n\n`);
-        },
         handleLLMNewToken(token, idx, runId, parentRunId, tags) {
             res.write(token);
         }
