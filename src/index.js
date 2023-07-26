@@ -9,10 +9,12 @@ const {SystemMessagePromptTemplate, ChatPromptTemplate} = require("langchain/pro
     // global.window.name = "nodejs";
     const {text, context, options} = req.body();
     console.log(`process begin...${JSON.stringify(req.body())}`)
-    let translateText = text || (context.type === 'none' ? "" : context.value) || await clipboard.copy();
+    let translateText = text || (context === 'none' ? "" : context) || await clipboard.copy();
     console.log("begin fetch...")
 
-    res.write(`${translateText}\n\n`);
+    // 如果translateText中有换行符，需要添加> 符号
+    const displayText = translateText.replace(/\n/g, "\n> ")
+    res.write(`> ${displayText}\n\n`, 'context');
 
     const sourceLang = await language.detect(translateText)
 
@@ -27,20 +29,32 @@ const {SystemMessagePromptTemplate, ChatPromptTemplate} = require("langchain/pro
     let isWord = language.isWord(sourceLang, translateText)
     console.log(`isWord is ${isWord}`)
     options.verbose = true
+    options.stream = true
     let chat = llm(options)
-
     translateText = language.splitWord(translateText)
 
     isWord = language.isWord(sourceLang, translateText)
     console.log(`isWord is ${isWord}`)
 
-
-    const templateText = `You are a {sourceLang}-{targetLang} dictionary. 
+    const templateText = `Act as a {sourceLang}-{targetLang} Dictionary for word most common two meaning with America phonetic symbols. 
     Query Word: """{text}"""
+    
     Result Formats:
     \`\`\`markdown
+        美: [phonetic symbols]
+        
         [abbr of part of speech] {targetLang} Meaning]
     \`\`\`
+    
+    Example:
+    \`\`\`markdown
+        美: [dɪˈspleɪ]
+        
+        [n] 显示
+        
+        [v] 显示
+    \`\`\`
+    
     Result:`
 
     let messages
