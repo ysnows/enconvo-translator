@@ -1,7 +1,7 @@
 name: Translator
-version: 0.1.0
+version: 0.1.1
 author: enconvo
-on: { }
+on: {}
 steps:
   - name: ''
     uses: javascript
@@ -48,7 +48,7 @@ options:
         type: text
         title: Alias
         defaultValue: ''
-        menuValues: [ ]
+        menuValues: []
         desc: ''
         placeholderText: Add alias
         textWidth: 1.6e+2
@@ -56,10 +56,11 @@ options:
       - identifier: Hotkey
         type: hotkey
         title: Hotkey
-        defaultValue: ''
-        menuValues: [ ]
-        desc: "This shortcut will open an ai conversation window from anywhere in the
-      system\n      . Make sure it is not conflicting with other global shortcuts."
+        defaultValue: 'Option+D'
+        menuValues: []
+        desc: |-
+          "This shortcut will open an ai conversation window from anywhere in the
+          system\n      . Make sure it is not conflicting with other global shortcuts."
         placeholderText: Add a hotkey to global start
         textWidth: 1.6e+2
         disable: false
