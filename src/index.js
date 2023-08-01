@@ -13,7 +13,8 @@ const {SystemMessagePromptTemplate, ChatPromptTemplate} = require("langchain/pro
 
     // 如果translateText中有换行符，需要添加> 符号
     const displayText = translateText.replace(/\n/g, "\n> ")
-    res.write(`> ${displayText}\n\n`, 'context');
+    await res.write(`> ${displayText}\n\n`, 'context');
+
 
     const sourceLang = await language.detect(translateText)
 
