@@ -15,7 +15,7 @@ export default async function main() {
 
         // 如果translateText中有换行符，需要添加> 符号
         // const displayText = translateText.replace(/\n/g, "\n> ");
-        // res.write(`> ${displayText}\n\n`);
+        // await res.write(`> ${displayText}\n\n`);
 
         const sourceLang = await language.detect(translateText);
 

@@ -2,6 +2,7 @@
   "name": "enconvo.translator",
   "version": "1.0.1",
   "description": "",
+  "type": "module",
   "main": "src/index.ts",
   "scripts": {
     "tsup": "tsup",
@@ -11,7 +12,7 @@
     "lint:fix": "npm run lint --fix",
     "format": "prettier --write \"**/*.ts\"",
     "format:check": "prettier --list-different \"**/*.ts\"",
-    "build": "node build.cjs ",
+    "build": "enconvo-build",
     "deploy": "npm run build &&  cp -r dist/* ~/Library/Application\\ Support/Enconvo/extension/enconvo.translator",
     "publish": "webpack && mv dist enconvo.translator && zip -r enconvo.translator.zip enconvo.translator && rm -rf enconvo.translator",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -30,27 +31,15 @@
     "*.js"
   ],
   "dependencies": {
-    "enconvo": "^1.0.4",
-    "langchain": "^0.0.132"
+    "@raycast/api": "^1.57.1",
+    "enconvo": "^1.7.1",
+    "langchain": "^0.0.129"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.9",
-    "@babel/preset-env": "^7.22.9",
-    "@tsconfig/recommended": "^1.0.2",
-    "@types/js-yaml": "^4",
     "@types/node": "^18.15.5",
-    "@typescript-eslint/eslint-plugin": "^5.51.0",
-    "@typescript-eslint/parser": "^5.51.0",
     "eslint": "^8.33.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-prettier": "^4.2.1",
-    "esmify": "^2.1.1",
     "prettier": "^2.8.3",
-    "tinyify": "^4.0.0",
-    "tsup": "^7.1.0",
-    "tsx": "^3.12.3",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "tsup": "^7.2.0"
   }
 }
