@@ -10,8 +10,7 @@
     "format": "prettier --write \"**/*.ts\"",
     "format:check": "prettier --list-different \"**/*.ts\"",
     "build": "enconvo-build",
-    "dev": "npm run build &&  cp -r dist/* ~/Library/Application\\ Support/Enconvo/extension/enconvo.translator",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "enconvo-build --dev"
   },
   "repository": {
     "type": "git",
