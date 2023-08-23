@@ -1,17 +1,11 @@
 name: Translator
 version: 0.1.2
 author: enconvo
-on: {}
+on: { }
 steps:
   - name: ''
-    uses: javascript
+    uses: nodejs
     stream: true
-    env:
-      JSFilePath:
-        type: file-path
-        value: index.js
-        sort: 0
-        messages: []
 extensionId: enconvo.translator
 logo: ns:translate
 description: Translate text between english and chinese
@@ -48,7 +42,7 @@ options:
         type: text
         title: Alias
         defaultValue: ''
-        menuValues: []
+        menuValues: [ ]
         desc: ''
         placeholderText: Add alias
         textWidth: 1.6e+2
@@ -57,7 +51,7 @@ options:
         type: hotkey
         title: Hotkey
         defaultValue: 'Option+D'
-        menuValues: []
+        menuValues: [ ]
         desc: |-
           "This shortcut will open an ai conversation window from anywhere in the
           system\n      . Make sure it is not conflicting with other global shortcuts."

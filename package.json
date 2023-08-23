@@ -2,7 +2,7 @@
   "name": "enconvo.translator",
   "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
     "tsup": "tsup",
     "start": "node src/index.js",
@@ -11,7 +11,7 @@
     "lint:fix": "npm run lint --fix",
     "format": "prettier --write \"**/*.ts\"",
     "format:check": "prettier --list-different \"**/*.ts\"",
-    "build": "node build.js && node polyfill.js",
+    "build": "node build.cjs ",
     "deploy": "npm run build &&  cp -r dist/* ~/Library/Application\\ Support/Enconvo/extension/enconvo.translator",
     "publish": "webpack && mv dist enconvo.translator && zip -r enconvo.translator.zip enconvo.translator && rm -rf enconvo.translator",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -30,22 +30,8 @@
     "*.js"
   ],
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.5.4",
-    "@mozilla/readability": "^0.4.4",
-    "cheerio": "^1.0.0-rc.12",
-    "crypto-browserify": "^3.12.0",
-    "enconvo": "^1.6.5",
-    "js-tiktoken": "^1.0.7",
-    "jsdom": "^22.1.0",
-    "langchain": "^0.0.114",
-    "langchainplus-sdk": "^0.0.19",
-    "langsmith": "^0.0.9",
-    "openai": "^3.3.8",
-    "p-queue": "^7.3.4",
-    "p-retry": "^5.1.2",
-    "uuid": "^9.0.0",
-    "zod": "^3.21.4",
-    "zod-to-json-schema": "^3.20.4"
+    "enconvo": "^1.0.4",
+    "langchain": "^0.0.132"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
@@ -55,22 +41,16 @@
     "@types/node": "^18.15.5",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
-    "babelify": "^10.0.0",
-    "browserify": "^17.0.0",
-    "copy-webpack-plugin": "^11.0.0",
     "eslint": "^8.33.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
     "esmify": "^2.1.1",
-    "ignore-webpack-plugin": "^0.3.0",
     "prettier": "^2.8.3",
     "tinyify": "^4.0.0",
     "tsup": "^7.1.0",
     "tsx": "^3.12.3",
-    "typescript": "^5.0.4",
-    "webpack": "^5.86.0",
-    "webpack-cli": "^5.1.4"
+    "typescript": "^5.0.4"
   }
 }
