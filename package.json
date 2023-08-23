@@ -5,16 +5,12 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "tsup": "tsup",
-    "start": "node src/index.js",
-    "dist": "node dist/main.js",
     "lint": "eslint src",
     "lint:fix": "npm run lint --fix",
     "format": "prettier --write \"**/*.ts\"",
     "format:check": "prettier --list-different \"**/*.ts\"",
     "build": "enconvo-build",
-    "deploy": "npm run build &&  cp -r dist/* ~/Library/Application\\ Support/Enconvo/extension/enconvo.translator",
-    "publish": "webpack && mv dist enconvo.translator && zip -r enconvo.translator.zip enconvo.translator && rm -rf enconvo.translator",
+    "dev": "npm run build &&  cp -r dist/* ~/Library/Application\\ Support/Enconvo/extension/enconvo.translator",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -32,14 +28,14 @@
   ],
   "dependencies": {
     "@raycast/api": "^1.57.1",
-    "enconvo": "^1.7.1",
+    "enconvo": "^1.7.4",
     "langchain": "^0.0.129"
   },
   "devDependencies": {
     "@types/node": "^18.15.5",
     "eslint": "^8.33.0",
     "prettier": "^2.8.3",
-    "typescript": "^5.0.4",
-    "tsup": "^7.2.0"
+    "tsup": "^7.2.0",
+    "typescript": "^5.0.4"
   }
 }
