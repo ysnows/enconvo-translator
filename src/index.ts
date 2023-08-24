@@ -4,7 +4,6 @@ import {Clipboard, language, req, res} from "enconvo/api";
 import {OpenAI, PromptTemplate} from "langchain";
 import {CallbackManager} from "langchain/callbacks";
 
-
 export default async function main() {
     try {
         const {text, context, options} = req.body();

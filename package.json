@@ -1,29 +1,20 @@
 {
-  "name": "enconvo.translator",
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "translator",
   "version": "1.0.1",
-  "description": "",
-  "type": "module",
-  "main": "src/index.ts",
-  "scripts": {
-    "lint": "eslint src",
-    "lint:fix": "npm run lint --fix",
-    "format": "prettier --write \"**/*.ts\"",
-    "format:check": "prettier --list-different \"**/*.ts\"",
-    "build": "enconvo",
-    "dev": "enconvo --dev"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ysnows/enconvo.translator.git"
-  },
+  "description": "translate text or word",
+  "title": "Translator",
+  "icon": "icon.png",
   "author": "ysnows",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ysnows/enconvo.translator/issues"
-  },
-  "homepage": "https://github.com/ysnows/enconvo.translator#readme",
-  "sideEffects": [
-    "*.js"
+  "type": "module",
+  "commands": [
+    {
+      "name": "translate",
+      "title": "Translator",
+      "description": "translate text or word",
+      "mode": "no-view"
+    }
   ],
   "dependencies": {
     "@raycast/api": "^1.57.1",
@@ -36,5 +27,13 @@
     "prettier": "^2.8.3",
     "tsup": "^7.2.0",
     "typescript": "^5.0.4"
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "lint:fix": "npm run lint --fix",
+    "format": "prettier --write \"**/*.ts\"",
+    "format:check": "prettier --list-different \"**/*.ts\"",
+    "build": "enconvo",
+    "dev": "enconvo --dev"
   }
 }
