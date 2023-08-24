@@ -9,8 +9,8 @@
     "lint:fix": "npm run lint --fix",
     "format": "prettier --write \"**/*.ts\"",
     "format:check": "prettier --list-different \"**/*.ts\"",
-    "build": "enconvo-build",
-    "dev": "enconvo-build --dev"
+    "build": "enconvo",
+    "dev": "enconvo --dev"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "@raycast/api": "^1.57.1",
-    "enconvo": "^1.7.4",
+    "enconvo": "^1.7.5",
     "langchain": "^0.0.129"
   },
   "devDependencies": {

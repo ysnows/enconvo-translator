@@ -37,25 +37,22 @@ export default async function main() {
         console.log(`isWord is ${isWord}`);
 
         const templateText = `Act as a {sourceLang}-{targetLang} Dictionary for word most common two meaning with America phonetic symbols. 
-    Query Word: """{text}"""
+Query Word: """{text}"""
     
-    Result Formats:
-    \`\`\`markdown
-        美: [phonetic symbols]
-        
-        [abbr of part of speech] {targetLang} Meaning]
-    \`\`\`
-    
-    Example:
-    \`\`\`markdown
-        美: [dɪˈspleɪ]
-        
-        [n] 显示
-        
-        [v] 显示
-    \`\`\`
-    
-    Result:`;
+Result Formats:
+美: [phonetic symbols]
+
+[abbr of part of speech] {targetLang} Meaning]
+
+Example:
+美: [dɪˈspleɪ]
+
+[n] 显示
+
+[v] 显示
+
+Result:`;
+        ;
 
         let messages;
 
