@@ -10,15 +10,24 @@
   "type": "module",
   "commands": [
     {
-      "name": "translate",
+      "name": "index",
       "title": "Translator",
       "description": "translate text or word",
-      "mode": "no-view"
+      "mode": "no-view",
+      "preferences": [
+        {
+          "name": "",
+          "description": "",
+          "type": "file",
+          "required": false,
+          "title": ""
+        }
+      ]
     }
   ],
   "dependencies": {
     "@raycast/api": "^1.57.1",
-    "enconvo": "^1.7.5",
+    "enconvo": "^1.7.6",
     "langchain": "^0.0.129"
   },
   "devDependencies": {

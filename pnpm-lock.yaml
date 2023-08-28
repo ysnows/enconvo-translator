@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@raycast/api': ^1.57.1
   '@types/node': ^18.15.5
-  enconvo: ^1.7.5
+  enconvo: ^1.7.6
   eslint: ^8.33.0
   langchain: ^0.0.129
   prettier: ^2.8.3
@@ -12,7 +12,7 @@ specifiers:
 
 dependencies:
   '@raycast/api': 1.57.1_@types+node@18.17.8
-  enconvo: 1.7.5_@types+node@18.17.8
+  enconvo: 1.7.6_@types+node@18.17.8
   langchain: 0.0.129_@raycast+api@1.57.1
 
 devDependencies:
@@ -688,8 +688,8 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /enconvo/1.7.5_@types+node@18.17.8:
-    resolution: {integrity: sha512-3tRq8cajrR6pQ4urqcSVqwy0O3RKJMF5Uf6A1QeTUxEwJiyHPjjDJ8wYR9w2UEx5MfyeXvXo3pGHgWPSs789VQ==}
+  /enconvo/1.7.6_@types+node@18.17.8:
+    resolution: {integrity: sha512-Inqvd8GORIHFdwwm4SY6DeGnue4gEDk5svhjRO4ShC9eW0dbDwfl/SoW7128lf/tbGerATK8vHoSSMbL056clg==}
     hasBin: true
     dependencies:
       '@raycast/api': 1.57.2_@types+node@18.17.8
