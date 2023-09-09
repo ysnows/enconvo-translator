@@ -80,14 +80,16 @@ Result:`;
                 streaming: true,
             },
             {
-                basePath: options.basePath + "/v1"
+                basePath: options.baseUrl
             });
+
 
         const response = await chat.call(messages, {}, CallbackManager.fromHandlers({
             async handleLLMNewToken(token) {
                 await res.write(token);
             }
         }));
+
 
         console.log("response:", response);
         await res.end(response);
