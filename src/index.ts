@@ -92,10 +92,9 @@ Result:`;
 
 
         console.log("response:", response);
-        await res.end(response);
-
+        return response;
     } catch (err) {
-        console.error("Error:", err);
+        return "error" + err;
     }
 }
 
